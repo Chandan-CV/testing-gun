@@ -2,21 +2,25 @@ import React, { useEffect, useState } from 'react'
 import Gun from 'gun'
 
 
-function index() {
+function App() {
   var gun = Gun(["http://localhost:3000/", "https://testing-gun.vercel.app/"])
   var db = gun.get("test").get("rec")
   const [messages, setmessages] = useState([])
   const [text, settext] = useState("")
     
-  useEffect(()=>{
+  
 
-    db.on((data)=>{
-      console.log(data)
-      console.log(data.messages)
-      console.log(eval(data.messages))
-      setmessages(eval(data.messages))
-    })
-  },[])
+    useEffect(()=>{
+      
+      db.on((data)=>{
+        console.log(data)
+        console.log(data.messages)
+        console.log(eval(data.messages))
+        setmessages(eval(data.messages))
+      })
+    },[])
+  
+ 
 
   return (
     <div className='flex  col-auto flex-col row-auto w-auto'>
@@ -27,7 +31,7 @@ function index() {
           messages: (JSON.stringify([...messages,text]))
         })}}>submit</button>
        {messages.map((element)=>{
-         return <p>{element}</p>
+         return <p key={element}>{element}</p>
        })}
     
 
@@ -35,4 +39,4 @@ function index() {
   )
 }
 
-export default index
+export default App
