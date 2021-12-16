@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Gun from 'gun'
+import Gun from 'gun/gun'
 
 const gun = Gun({
-    peers: ['https://testing-gun.vercel.app/gun'] // Put the relay node that you want here
+    peers: ['https://turse-relay.herokuapp.com/gun', "http://localhost:8765/gun","http://192.168.0.102:3030/gun"] // Put the relay node that you want here
   })
   
 
